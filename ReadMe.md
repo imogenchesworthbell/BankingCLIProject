@@ -10,7 +10,7 @@
 A command-line program that simulates basic banking operations, such as account creation, deposits, withdrawals, and balance inquiries.
 
 ## Key Concepts:
-**OOP:** Create classes like Account, Bank, and Transaction.
+**OOP:** Create classes like `Account`, `Bank`, and `Transaction`.
 
 **Encapsulation and Access Control:** Protect sensitive data in your classes and expose only necessary methods.
 
