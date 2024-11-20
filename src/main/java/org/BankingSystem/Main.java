@@ -20,45 +20,89 @@ public class Main {
             System.out.println("7. Update Account Name");
             System.out.println("8. Delete Account");
             System.out.println("9. Exit");
+
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            switch(choice){
+            switch(choice) {
+
                 case 1: // Create
-                System.out.println("Enter Account Number");
-                int accountNumber = scanner.nextInt();
+                    System.out.println("Enter Account Number");
+                    int accountNumber = scanner.nextInt();
 
-                System.out.println("Enter Starting Balance.");
-                double balance = scanner.nextDouble();
+                    System.out.println("Enter Starting Balance.");
+                    double balance = scanner.nextDouble();
 
-                scanner.nextLine();
+                    scanner.nextLine();
 
-                System.out.println("Enter Account Name");
-                String accountName = scanner.nextLine();
-                newBank.createAccount(accountNumber, balance, accountName);
+                    System.out.println("Enter Account Name");
+                    String accountName = scanner.nextLine();
+                    newBank.createAccount(accountNumber, balance, accountName);
                     break;
 
                 case 2: // Deposit
-                System.out.print("Enter account number: ");
-                int depositAccountNumber = scanner.nextInt();
-                System.out.print("Enter amount to deposit: ");
-                double amount = scanner.nextDouble();
 
+                    System.out.print("Enter account number: ");
+                    int depositAccountNumber = scanner.nextInt();
 
+                    System.out.print("Enter amount to deposit: ");
+                    double amount = scanner.nextDouble();
+
+                    // Use the methods in the Bank class
+                    if (newBank.doesAccountExist(depositAccountNumber)) {
+                        Account depositAccount = newBank.getAccount(depositAccountNumber);
+                        depositAccount.deposit(amount);
+                        System.out.printf("Deposit successful. New balance: £%.2f%n", depositAccount.getBalance());
+                    } else {
+                        System.out.println("Account number not found.");
+                    }
+                    break;
 
                 case 3: // Withdraw
+                    System.out.print("Enter account number: ");
+                    int withdrawAccountNumber = scanner.nextInt();
 
+                    System.out.print("Enter amount to withdraw: ");
+                    double withdrawalAmount = scanner.nextDouble();
+
+                    // Use the methods in the Bank class
+                    if (newBank.doesAccountExist(withdrawAccountNumber)) {
+                        Account withdrawAccount = newBank.getAccount(withdrawAccountNumber);
+                        withdrawAccount.withdraw(withdrawalAmount);
+                        System.out.printf("Withdrawal successful. New balance: £%.2f%n", withdrawAccount.getBalance());
+                    } else {
+                        System.out.println("Account number not found.");
+                    }
                     break;
 
                 case 4: // Transfer
+                    System.out.print("Enter sender account number: ");
+                    int senderAccountNumber = scanner.nextInt();
 
+                    System.out.print("Enter receiver account number: ");
+                    int receiverAccountNumber = scanner.nextInt();
+
+                    System.out.print("Enter amount to transfer: ");
+                    double transferAmount = scanner.nextDouble();
+
+                    //Use the methods in the Bank class
+                    if (newBank.doesAccountExist(senderAccountNumber) && newBank.doesAccountExist(receiverAccountNumber)){
+                        newBank.transfer(senderAccountNumber, receiverAccountNumber, transferAmount);
+                        System.out.println("Transfer successful.");
+                    } else {
+                        System.out.println("Account number not found.");
+                    }
                     break;
 
                 case 5: // Display All
-
+                    newBank.listAccounts();
                     break;
 
                 case 6: // Find Account
+
+//                    System.out.print("Enter account number: ");
+//                    int findAccountNumber = scanner.nextInt();
+//                    newBank.getAccount(findAccountNumber);
 
                     break;
 
@@ -87,10 +131,12 @@ public class Main {
 //
 //        myAccount.deposit(10.05);
 //        myAccount.deposit(0);
+//        myAccount.deposit(-10);
 //        myAccount.withdraw(20.40);
 //        myAccount.withdraw(0);
 //        myAccount.withdraw(23450.40);
 //        myAccount.withdraw(-23450.40);
+
 //        myBank.createAccount(12, 100, "John");
 //        myBank.createAccount(15, 78, "Holly");
 //        myBank.createAccount(14,56,"Mike");

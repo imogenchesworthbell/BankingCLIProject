@@ -43,21 +43,21 @@ public class Bank {
         }
     }
 
+    // Check if an account exists
+    public boolean doesAccountExist(int accountNumber) {
+        return accounts.containsKey(accountNumber);
+    }
 
-    //Find by accountNumber
-    public void getAccount(int accountNumber) {
-            if (accounts.containsKey(accountNumber)) {
-                Account account = accounts.get(accountNumber);
-                System.out.printf(
-                        "Account Number: %d, Balance: £%.2f, Account Name: %s%n",
-                        account.getAccountNumber(),
-                        account.getBalance(),
-                        account.getAccountName()
-                );
-            }else{
-                System.out.println("No account found");
+    // Get Account
+    public Account getAccount(int accountNumber) {
+        if (accounts.containsKey(accountNumber)) {
+            return accounts.get(accountNumber);
+        } else {
+            System.out.println("No account found with number " + accountNumber);
+            return null;
         }
     }
+
 
     //Update Name
     public void updateAccountName(int accountNumber, String name) {
@@ -88,7 +88,6 @@ public class Bank {
             //Get the accounts
             Account fromAccount = accounts.get(fromAccountNumber);
             Account toAccount = accounts.get(toAccountNumber);
-
             // Validate the transfer amount
             if (amount <= 0) {
                 System.out.println("You can't transfer zero or a negative amount. Try again.");
@@ -105,4 +104,3 @@ public class Bank {
         }
     }
 }
-
