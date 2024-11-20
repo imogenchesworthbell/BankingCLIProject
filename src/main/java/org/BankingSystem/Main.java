@@ -100,18 +100,52 @@ public class Main {
 
                 case 6: // Find Account
 
-//                    System.out.print("Enter account number: ");
-//                    int findAccountNumber = scanner.nextInt();
-//                    newBank.getAccount(findAccountNumber);
+                    System.out.print("Enter account number: ");
+                    int findAccountNumber = scanner.nextInt();
+                    Account account1 = newBank.getAccount(findAccountNumber);
+                    System.out.printf(
+                            "Account Number: %d, Balance: £%.2f, Account Name: %s%n",
+                            account1.getAccountNumber(),
+                            account1.getBalance(),
+                            account1.getAccountName()
+                    );
 
                     break;
 
                 case 7: // Update
+                    System.out.print("Enter account number: ");
+                    int updateAccountNameWithAccountNumber = scanner.nextInt();
+
+                    scanner.nextLine();
+
+                    System.out.println("Enter Account Name");
+                    String accountNameForUpdate = scanner.nextLine();
+
+                    Account account2 = newBank.getAccount(updateAccountNameWithAccountNumber);
+
+                    account2.setAccountName(accountNameForUpdate);
+
+                    System.out.printf(
+                            "Account Number: %d, Balance: £%.2f, Account Name: %s%n",
+                            account2.getAccountNumber(),
+                            account2.getBalance(),
+                            account2.getAccountName()
+                    );
 
                     break;
 
-                case 8: // Delete
+                case 8: // Delete Account
+                    System.out.print("Enter account number to delete: ");
+                    int accountNumberToDelete = scanner.nextInt();
 
+                    // Check if the account exists
+                    if (newBank.doesAccountExist(accountNumberToDelete)) {
+                        // If the account exists, remove it
+                        newBank.removeAccount(accountNumberToDelete);
+                    } else {
+                        // If the account does not exist, inform the user
+                        System.out.println("Account not found. Cannot delete.");
+                    }
                     break;
 
                 case 9: // Exit
