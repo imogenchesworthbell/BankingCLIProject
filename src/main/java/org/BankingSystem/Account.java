@@ -11,16 +11,6 @@ public class Account {
     // Constructor
 
     public Account(int accountNumber, double balance, String accountName) {
-        //can add validation in the constructor
-//        if (accountNumber <= 0) {
-//            throw new IllegalArgumentException("Account number must be positive.");
-//        }
-//        if (balance < 0) {
-//            throw new IllegalArgumentException("Balance cannot be negative.");
-//        }
-//        if (accountName == null || accountName.isBlank()) {
-//            throw new IllegalArgumentException("Account name cannot be null or empty.");
-//        }
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountName = accountName;

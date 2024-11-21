@@ -44,11 +44,11 @@ public class AccountTest {
         assertEquals(1234.56, account.getBalance(), "Amount must be greater than zero.");
     }
 
-//    @Test
-//    public void withdrawMoneyNegativeAmountTest(){
-//        account.withdraw(-20);
-//        assertEquals(1234.56, account.getBalance(), "Amount must be greater than zero.");
-//    }
+    @Test
+    public void withdrawMoneyNegativeAmountTest(){
+        account.withdraw(-20);
+        assertEquals(1234.56, account.getBalance(), "Amount must be greater than zero.");
+    }
 
     @Test
     public void withdrawMoreMoneyThanAllowedTest(){

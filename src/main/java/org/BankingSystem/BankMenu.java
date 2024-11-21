@@ -14,19 +14,29 @@ public class BankMenu {
         this.scanner= new Scanner(System.in);
     }
 
-    public void start(){
-        while(true){
+    public void start() {
+        while (true) {
             displayMenu();
             int choice = scanner.nextInt();
             scanner.nextLine();
             handleChoice(choice);
+
+            System.out.print("\nWould you like to do anything else? (yes/no): ");
+            String continueChoice= scanner.nextLine().toLowerCase();
+
+            // If the user says no, exit the loop and end the program
+            if (continueChoice.equals("no")) {
+                System.out.println("Goodbye!");
+                break;
+            }
         }
     }
 
     //Menu for user interaction
 
     private void displayMenu() {
-        System.out.println("\nWelcome to the Bank");
+        System.out.println("\n\033[1mWelcome to the Bank\033[0m");
+        System.out.println("\nChoose an option:");
         System.out.println("1. Create Account");
         System.out.println("2. Deposit Money");
         System.out.println("3. Withdraw Money");
@@ -36,21 +46,21 @@ public class BankMenu {
         System.out.println("7. Update Account Name");
         System.out.println("8. Delete Account");
         System.out.println("9. Exit");
-        System.out.println("\nChoose an option:");
+
     }
 
     private void handleChoice(int choice){
         switch(choice) {
             case 1: // Create
-                System.out.println("Enter Account Number");
+                System.out.println("Enter Account Number:");
                 int accountNumber = scanner.nextInt();
 
-                System.out.println("Enter Starting Balance.");
+                System.out.println("Enter Starting Balance:");
                 double balance = scanner.nextDouble();
 
                 scanner.nextLine();
 
-                System.out.println("Enter Account Name");
+                System.out.println("Enter Account Name:");
                 String accountName = scanner.nextLine();
                 bank.createAccount(accountNumber, balance, accountName);
                 break;
@@ -133,7 +143,7 @@ public class BankMenu {
 
                 scanner.nextLine();
 
-                System.out.println("Enter Account Name");
+                System.out.println("Enter Account Name:");
                 String accountNameForUpdate = scanner.nextLine();
 
                 Account updateAccount = bank.getAccount(updateAccountNameWithAccountNumber);
@@ -150,7 +160,7 @@ public class BankMenu {
                 break;
 
             case 8: // Delete Account
-                System.out.print("Enter account number to delete: ");
+                System.out.print("Enter account number to delete:");
                 int accountNumberToDelete = scanner.nextInt();
 
                 // Check if the account exists
@@ -172,34 +182,4 @@ public class BankMenu {
                 System.out.println("Invalid choice, please try again.");
         }
     }
-
-//        Account myAccount = new Account(12345, 1234.56, "Janice Taylor");
-//        Bank myBank = new Bank();
-//
-//        System.out.println("Account Number: " + myAccount.getAccountNumber());
-//        System.out.printf("Current Balance: £%.2f%n", myAccount.getBalance());
-//
-//        myAccount.deposit(10.05);
-//        myAccount.deposit(0);
-//        myAccount.deposit(-10);
-//        myAccount.withdraw(20.40);
-//        myAccount.withdraw(0);
-//        myAccount.withdraw(23450.40);
-//        myAccount.withdraw(-23450.40);
-
-//        myBank.createAccount(12, 100, "John");
-//        myBank.createAccount(15, 78, "Holly");
-//        myBank.createAccount(14,56,"Mike");
-//        myBank.getAccount(15);
-//        myBank.updateAccountName(12, "Bob");
-//        myBank.removeAccount(12);
-//        myBank.listAccounts();
-//        myBank.transfer(14,15,5);
-//        myBank.transfer(14,15,100);
-//        myBank.transfer(13,14,20);
-//        myBank.transfer(15,14,-10);
-//        myBank.transfer(15,14,0);
-//        myBank.listAccounts();
-
 }
-
