@@ -10,10 +10,20 @@ public class Account {
 
     // Constructor
 
-    public Account(int accountNumber, double balance, String accountName){
-        this.accountNumber=accountNumber;
-        this.balance=balance;
-        this.accountName=accountName;
+    public Account(int accountNumber, double balance, String accountName) {
+        //can add validation in the constructor
+//        if (accountNumber <= 0) {
+//            throw new IllegalArgumentException("Account number must be positive.");
+//        }
+//        if (balance < 0) {
+//            throw new IllegalArgumentException("Balance cannot be negative.");
+//        }
+//        if (accountName == null || accountName.isBlank()) {
+//            throw new IllegalArgumentException("Account name cannot be null or empty.");
+//        }
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountName = accountName;
     }
 
     // Encapsulation i.e getters and setters
@@ -22,11 +32,11 @@ public class Account {
         return accountNumber;
     }
 
-    public double getBalance(){
+    public double getBalance() {
         return balance;
     }
 
-    public String getAccountName(){
+    public String getAccountName() {
         return accountName;
     }
 
@@ -37,22 +47,24 @@ public class Account {
     //Methods
 
     //Deposit Money
-    public void deposit(double amount){
-        if(amount > 0){
+    public void deposit(double amount) {
+        if (amount > 0) {
             balance += amount;
             System.out.printf("Deposit of £%.2f has been successful, your new balance is £%.2f.%n", amount, balance);
+        } else {
+            System.out.printf("Deposit of £%.2f is invalid, please try again.%n", amount);
         }
-        else{System.out.printf("Deposit of £%.2f is invalid, please try again.%n", amount);}
     }
 
     //Withdraw Money
-    public void withdraw(double amount){
-        if(amount > 0 && balance>amount){
-            balance-= amount;
-            System.out.printf("Withdrawal of £%.2f has been successful, your new balance is £%.2f .%n", amount, balance);
-        } else if (amount > balance) {
-            System.out.println("Insufficient Funds.");
-            //could add overdraft option ?
-        } else{System.out.printf("Withdrawal of £%.2f is invalid, please try again.%n", amount);}
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Amount must be greater than zero.");
+        } else if(balance < amount) {
+            System.out.println("Insufficient funds.");
+        } else {
+            balance -= amount;
+            System.out.printf("Successfully withdrew £%.2f. New balance: £%.2f.%n", amount, balance);
+        }
     }
 }

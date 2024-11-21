@@ -31,6 +31,7 @@ public class Bank {
         if (accounts.isEmpty()) {
             System.out.println("No accounts found");
         } else {
+            //for each account number in the (accounts array keys) list of account numbers - For each accountNumber, you retrieve its associated Account object
             for (Integer accountNumber : accounts.keySet()) {
                 Account account = accounts.get(accountNumber);
                 System.out.printf(
@@ -43,19 +44,8 @@ public class Bank {
         }
     }
 
-    // Check if an account exists
-    public boolean doesAccountExist(int accountNumber) {
-        return accounts.containsKey(accountNumber);
-    }
-
-    // Get Account
     public Account getAccount(int accountNumber) {
-        if (accounts.containsKey(accountNumber)) {
-            return accounts.get(accountNumber);
-        } else {
-            System.out.println("No account found with number " + accountNumber);
-            return null;
-        }
+        return accounts.get(accountNumber);
     }
 
 
@@ -102,7 +92,5 @@ public class Bank {
         } else {
             System.out.println("One or both account numbers are invalid. Transfer failed.");
         }
-
-
     }
 }
