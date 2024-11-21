@@ -36,7 +36,7 @@ public class BankMenu {
 
     private void displayMenu() {
         System.out.println("\n\033[1mWelcome to the Bank\033[0m");
-        System.out.println("\nChoose an option:");
+        System.out.println("Choose an option:");
         System.out.println("1. Create Account");
         System.out.println("2. Deposit Money");
         System.out.println("3. Withdraw Money");
@@ -54,6 +54,7 @@ public class BankMenu {
             case 1: // Create
                 System.out.println("Enter Account Number:");
                 int accountNumber = scanner.nextInt();
+
 
                 System.out.println("Enter Starting Balance:");
                 double balance = scanner.nextDouble();
@@ -73,11 +74,13 @@ public class BankMenu {
                 System.out.print("Enter amount to deposit: ");
                 double amount = scanner.nextDouble();
 
+                scanner.nextLine();
+
                 // Use the methods in the Bank class
                 Account depositAccount = bank.getAccount(depositAccountNumber);
                 if (depositAccount != null){
                     depositAccount.deposit(amount);
-                    System.out.printf("Deposit successful. New balance: £%.2f%n", depositAccount.getBalance());
+                    System.out.printf("Balance: £%.2f%n", depositAccount.getBalance());
                 } else {
                     System.out.println("Account number not found.");
                 }
@@ -89,6 +92,8 @@ public class BankMenu {
 
                 System.out.print("Enter amount to withdraw: ");
                 double withdrawalAmount = scanner.nextDouble();
+
+                scanner.nextLine();
 
                 // Use the methods in the Bank class
                 Account withdrawAccount = bank.getAccount(withdrawAccountNumber);
@@ -110,10 +115,11 @@ public class BankMenu {
                 System.out.print("Enter amount to transfer: ");
                 double transferAmount = scanner.nextDouble();
 
+                scanner.nextLine();
+
                 //Use the methods in the Bank class
                 if (bank.getAccount(senderAccountNumber) != null && bank.getAccount(receiverAccountNumber) != null){
                     bank.transfer(senderAccountNumber, receiverAccountNumber, transferAmount);
-                    System.out.println("Transfer successful.");
                 } else {
                     System.out.println("Account number not found.");
                 }
@@ -127,6 +133,8 @@ public class BankMenu {
 
                 System.out.print("Enter account number: ");
                 int findAccountNumber = scanner.nextInt();
+                scanner.nextLine();
+
                 Account findAccount = bank.getAccount(findAccountNumber);
                 System.out.printf(
                         "Account Number: %d, Balance: £%.2f, Account Name: %s%n",
@@ -138,30 +146,20 @@ public class BankMenu {
                 break;
 
             case 7: // Update
-                System.out.print("Enter account number: ");
-                int updateAccountNameWithAccountNumber = scanner.nextInt();
+                System.out.print("Enter the account number: ");
+                int accountNumberToUpdate = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Enter the new account name: ");
+                String newAccountName = scanner.nextLine();
 
-                scanner.nextLine();
-
-                System.out.println("Enter Account Name:");
-                String accountNameForUpdate = scanner.nextLine();
-
-                Account updateAccount = bank.getAccount(updateAccountNameWithAccountNumber);
-
-                updateAccount.setAccountName(accountNameForUpdate);
-
-                System.out.printf(
-                        "Account Number: %d, Balance: £%.2f, Account Name: %s%n",
-                        updateAccount.getAccountNumber(),
-                        updateAccount.getBalance(),
-                        updateAccount.getAccountName()
-                );
-
+                bank.updateAccountName(accountNumberToUpdate, newAccountName);
                 break;
 
             case 8: // Delete Account
                 System.out.print("Enter account number to delete:");
                 int accountNumberToDelete = scanner.nextInt();
+
+                scanner.nextLine();
 
                 // Check if the account exists
                 if (bank.getAccount(accountNumberToDelete) != null) {

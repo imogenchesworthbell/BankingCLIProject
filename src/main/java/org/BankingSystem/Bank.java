@@ -87,7 +87,7 @@ public class Bank {
                 // Perform the transfer
                 fromAccount.withdraw(amount);
                 toAccount.deposit(amount);
-                System.out.printf("Successfully transferred £%.2f from Account %d to Account %d.%n", amount, fromAccountNumber, toAccountNumber);
+                System.out.println("Transfer Successful.");
             }
         } else {
             System.out.println("One or both account numbers are invalid. Transfer failed.");

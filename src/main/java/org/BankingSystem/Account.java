@@ -40,21 +40,21 @@ public class Account {
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.printf("Deposit of £%.2f has been successful, your new balance is £%.2f.%n", amount, balance);
-        } else {
-            System.out.printf("Deposit of £%.2f is invalid, please try again.%n", amount);
+//            System.out.printf("Deposit of £%.2f has been successful.%n", amount);
+//        } else {
+//            System.out.printf("Deposit of £%.2f is invalid, please try again.%n", amount);
         }
     }
 
     //Withdraw Money
     public void withdraw(double amount) {
-        if (amount <= 0) {
-            System.out.println("Amount must be greater than zero.");
-        } else if(balance < amount) {
-            System.out.println("Insufficient funds.");
-        } else {
+        if (amount > 0) {
+//            System.out.println("Amount must be greater than zero.");
+//        } else if(balance < amount) {
+//            System.out.println("Insufficient funds.");
+//        } else {
             balance -= amount;
-            System.out.printf("Successfully withdrew £%.2f. New balance: £%.2f.%n", amount, balance);
+//            System.out.println("Withdrawal Successful.");
         }
     }
 }
