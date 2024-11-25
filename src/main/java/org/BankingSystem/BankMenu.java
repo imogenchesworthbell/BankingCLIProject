@@ -142,7 +142,6 @@ public class BankMenu {
                         findAccount.getBalance(),
                         findAccount.getAccountName()
                 );
-
                 break;
 
             case 7: // Update
