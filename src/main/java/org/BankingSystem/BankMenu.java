@@ -37,24 +37,24 @@ public class BankMenu {
     private void displayMenu() {
         System.out.println("\n\033[1mWelcome to the Bank\033[0m");
         System.out.println("Choose an option:");
-        System.out.println("1. Create Account");
+        System.out.println("0. Create Account");
+        System.out.println("1. Balance Enquiry");
         System.out.println("2. Deposit Money");
         System.out.println("3. Withdraw Money");
         System.out.println("4. Transfer Money");
-        System.out.println("5. Display All Accounts");
+        System.out.println("5. Update Account Name");
         System.out.println("6. Find Account");
-        System.out.println("7. Update Account Name");
+        System.out.println("7. Display All Accounts");
         System.out.println("8. Delete Account");
         System.out.println("9. Exit");
-
     }
 
     private void handleChoice(int choice){
         switch(choice) {
-            case 1: // Create
+            case 0: // Create
+
                 System.out.println("Enter Account Number:");
                 int accountNumber = scanner.nextInt();
-
 
                 System.out.println("Enter Starting Balance:");
                 double balance = scanner.nextDouble();
@@ -64,6 +64,19 @@ public class BankMenu {
                 System.out.println("Enter Account Name:");
                 String accountName = scanner.nextLine();
                 bank.createAccount(accountNumber, balance, accountName);
+                break;
+
+            case 1: // Find Balance
+
+                System.out.print("Enter account number:");
+                int accountNumberToCheckBalance = scanner.nextInt();
+                scanner.nextLine();
+
+                Account findBalance = bank.getAccount(accountNumberToCheckBalance);
+                System.out.printf(
+                        "Your balance is: £%.2f",
+                        findBalance.getBalance()
+                );
                 break;
 
             case 2: // Deposit
@@ -87,6 +100,7 @@ public class BankMenu {
                 break;
 
             case 3: // Withdraw
+
                 System.out.print("Enter account number: ");
                 int withdrawAccountNumber = scanner.nextInt();
 
@@ -106,6 +120,7 @@ public class BankMenu {
                 break;
 
             case 4: // Transfer
+
                 System.out.print("Enter sender account number: ");
                 int senderAccountNumber = scanner.nextInt();
 
@@ -125,8 +140,15 @@ public class BankMenu {
                 }
                 break;
 
-            case 5: // Display All
-                bank.listAccounts();
+            case 5: // Update
+
+                System.out.print("Enter the account number: ");
+                int accountNumberToUpdate = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Enter the new account name: ");
+                String newAccountName = scanner.nextLine();
+
+                bank.updateAccountName(accountNumberToUpdate, newAccountName);
                 break;
 
             case 6: // Find Account
@@ -144,17 +166,13 @@ public class BankMenu {
                 );
                 break;
 
-            case 7: // Update
-                System.out.print("Enter the account number: ");
-                int accountNumberToUpdate = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-                System.out.print("Enter the new account name: ");
-                String newAccountName = scanner.nextLine();
+            case 7: // Display All
 
-                bank.updateAccountName(accountNumberToUpdate, newAccountName);
+                bank.listAccounts();
                 break;
 
             case 8: // Delete Account
+
                 System.out.print("Enter account number to delete:");
                 int accountNumberToDelete = scanner.nextInt();
 
@@ -171,11 +189,14 @@ public class BankMenu {
                 break;
 
             case 9: // Exit
+
                 System.out.println("Exiting the bank.");
                 scanner.close();
                 System.exit(0);
                 return;
+
             default:
+
                 System.out.println("Invalid choice, please try again.");
         }
     }
