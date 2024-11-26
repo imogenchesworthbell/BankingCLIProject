@@ -1,6 +1,7 @@
 package org.BankingSystem;
 
 public class SeedData {
+
     public static void loadSeedData(Bank bank){
         bank.createAccount(1,1234, "Brian");
         bank.createAccount(2, 5478,"Fred");

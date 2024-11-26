@@ -27,6 +27,7 @@ public class BankMenu {
             // If the user says no, exit the loop and end the program
             if (continueChoice.equals("no")) {
                 System.out.println("Goodbye!");
+                System.out.print("\033[0m");
                 break;
             }
         }
@@ -35,21 +36,23 @@ public class BankMenu {
     //Menu for user interaction
 
     private void displayMenu() {
-        System.out.println("\n\033[1mWelcome to the Bank\033[0m");
-        System.out.println("Choose an option:");
-        System.out.println("0. Create Account");
-        System.out.println("1. Balance Enquiry");
-        System.out.println("2. Deposit Money");
-        System.out.println("3. Withdraw Money");
-        System.out.println("4. Transfer Money");
-        System.out.println("5. Update Account Name");
-        System.out.println("6. Find Account");
-        System.out.println("7. Display All Accounts");
-        System.out.println("8. Delete Account");
-        System.out.println("9. Exit");
+        System.out.println("\n\033[1;4;36mWelcome to the Bank\033[0m");
+        System.out.println("Choose an option below:");
+        System.out.println("\033[1;36m0.\033[0m Create Account");
+        System.out.println("\033[1;36m1.\033[0m Balance Enquiry");
+        System.out.println("\033[1;36m2.\033[0m Deposit Money");
+        System.out.println("\033[1;36m3.\033[0m Withdraw Money");
+        System.out.println("\033[1;36m4.\033[0m Transfer Money");
+        System.out.println("\033[1;36m5.\033[0m Update Account Name");
+        System.out.println("\033[1;36m6.\033[0m Find Account");
+        System.out.println("\033[1;36m7.\033[0m Display All Accounts");
+        System.out.println("\033[1;36m8.\033[0m Delete Account");
+        System.out.println("\033[1;36m9.\033[0m Exit");
     }
 
     private void handleChoice(int choice){
+        // Setting text to bold and cyan
+        System.out.print("\033[1;36m");
         switch(choice) {
             case 0: // Create
 
@@ -190,14 +193,18 @@ public class BankMenu {
 
             case 9: // Exit
 
-                System.out.println("Exiting the bank.");
+                System.out.println("Goodbye!");
+                System.out.print("\033[0m");
                 scanner.close();
                 System.exit(0);
+
                 return;
 
             default:
 
                 System.out.println("Invalid choice, please try again.");
+
+
         }
     }
 }
