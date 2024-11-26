@@ -17,7 +17,16 @@ public class Bank {
     //CRUD
     //Create
     public void createAccount(int accountNumber, double balance, String accountName){
-        if(accounts.containsKey(accountNumber)){
+        if (accountNumber < 0) {
+            System.out.println("Account number must be a positive number.")
+        ;}
+        else if (balance < 0){
+            System.out.println("Balance must be non-negative.");
+        }
+        else if (accountName == null || accountName.isEmpty()) {
+            System.out.println("Account name cannot be empty.");
+        }
+        else if(accounts.containsKey(accountNumber)){
            System.out.println("This account number already exists, try again.");
         }else{
             Account newAccount = new Account(accountNumber, balance, accountName);
@@ -51,7 +60,10 @@ public class Bank {
 
     //Update Name
     public void updateAccountName(int accountNumber, String name) {
-        if (accounts.containsKey(accountNumber)) {
+        if(name == null || name.isEmpty() ){
+            System.out.println("Account name cannot be empty.");
+        }
+        else if (accounts.containsKey(accountNumber)) {
             Account account = accounts.get(accountNumber);
             account.setAccountName(name);
             System.out.println("Account name updated: " + name);
