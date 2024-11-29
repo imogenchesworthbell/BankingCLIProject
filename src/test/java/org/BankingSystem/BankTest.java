@@ -14,8 +14,7 @@ public class BankTest {
         bank = new Bank();
     }
 
-    //CREATE ACCOUNTS TESTS
-
+    //CREATE ACCOUNT TESTS
     @Test
     public void createAccountAllValidInputsTest(){
     bank.createAccount(12,1000,"Tom");

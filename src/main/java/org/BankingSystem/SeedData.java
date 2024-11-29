@@ -3,7 +3,7 @@ package org.BankingSystem;
 public class SeedData {
 
     public static void loadSeedData(Bank bank){
-        bank.createAccount(1,1234, "Brian");
+        bank.createAccount(1,10000, "Brian");
         bank.createAccount(2, 5478,"Fred");
         bank.createAccount(3, 4332, "Sophie");
         bank.createAccount(4, 1580, "Chloe");

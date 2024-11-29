@@ -32,7 +32,6 @@ public class BankMenu {
             }
         }
     }
-
     //Menu for user interaction
 
     private void displayMenu() {
@@ -197,14 +196,10 @@ public class BankMenu {
                 System.out.print("\033[0m");
                 scanner.close();
                 System.exit(0);
-
                 return;
 
             default:
-
                 System.out.println("Invalid choice, please try again.");
-
-
         }
     }
 }
